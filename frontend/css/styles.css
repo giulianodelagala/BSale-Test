@@ -9,12 +9,14 @@
     margin-bottom: 20px;
     padding-top: 20px;
     padding-bottom: 10px;
-    background: #F1C9C2;
-    color: #1F3D51;
+    background: #60A561;
+    color: #053225;
     
  }
 
 .footer {
-    background-color: #F1C9C2;
+    background-color: #60A561;
     margin: 20px auto;
-    padding: 20px 0px; }
+    padding: 20px 0px; 
+    color: #053225;
+}

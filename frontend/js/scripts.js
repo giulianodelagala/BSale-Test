@@ -2,6 +2,10 @@ $(document).ready(function() {
     $.ajax({
         url: "http://localhost:8000/products/"
     }).then( data => renderProduct (data) );
+
+    $('#searchButton').click(function() {
+        $('#loginModal').modal('show');
+    });
 });
 
 function renderProduct(data) {
