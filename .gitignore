@@ -1,3 +1,4 @@
 evaluation/__pycache__/*
 store/migrations/__pycache__/*
 store/__pycache__/*
+frontend/node_modules
