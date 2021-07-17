@@ -1,7 +1,26 @@
+var pagination = {
+    keyword: '',
+    totalRecords : 0,
+    //records : [],
+    //displayRecords : [],
+    recPerPage : 12,
+    page : 1,
+    totalPages : 0,
+    next : null,
+    previous: null,
+ }
+
+ const URL_QUERY = "http://localhost:8000/list/";
+
 $(document).ready(function() {
+    url = URL_QUERY + '?page=1&search=';
     $.ajax({
-        url: "http://localhost:8000/products/"
-    }).then( data => renderProduct (data) );
+        url: URL_QUERY
+    }).then( data => {
+            getValuesPagination(data,'');
+            renderProduct (data);
+            renderPagination();
+        });
 
     // $( () => searchProducts(''));
 
@@ -11,12 +30,10 @@ $(document).ready(function() {
 
     $('#searchButton').click( () => {
         //alert("Búsqueda: " + $('#searchKeyword').val());
-        searchProducts($('#searchKeyword').val());
+        searchProducts('?page=1&search=' + $('#searchKeyword').val());
         $('#searchModal').modal('hide');
         return false;
     });
-
-
 });
 
 function renderProduct(data) {
@@ -44,9 +61,67 @@ function renderProduct(data) {
     } 
 }
 
-function searchProducts(keyword = '') {
-    const url_query = "http://localhost:8000/list/?search=" + keyword;
+function searchProducts(keyword = '', page = 1) {
+    const url = URL_QUERY + keyword;
+    console.log(url);
     $.ajax({
-        url: url_query
-    }).then( data => renderProduct (data) );
+        url: url
+    }).then( data => {
+        getValuesPagination(data, keyword, page);
+        renderProduct (data);
+        renderPagination();
+    });
+}
+
+function getValuesPagination(data, keyword, page = 1) {
+    pagination.keyword = keyword;
+    pagination.totalRecords = data.count;
+    pagination.next = data.next;
+    pagination.previous = data.previous;
+    pagination.totalPages = Math.ceil(pagination.totalRecords/pagination.recPerPage);
+    pagination.page = page;
+}
+
+function renderPagination() {
+    var $pag = $('#paginationBar');
+    let prev = pagination.page - 1;
+    let next = pagination.page + 1;
+    $pag.empty();
+    
+    $pag.append(
+        `<li class="page-item">
+            <a onClick="searchProducts('?page=` + prev + '&search=' + pagination.keyword + `',` + prev + `)"
+                class="page-link" role="button">Previous</a>
+        </li>`
+        );
+    
+    for (let i = 1; i <= pagination.totalPages; i++){
+        if (pagination.page === i){
+            $pag.append(
+            `
+            <li class="page-item active">
+                <a class="page-link" href="#">` + i + `<span class="sr-only">(current)</span></a>
+            </li>`
+            );
+        }
+        else {
+            $pag.append(
+                `<li class="page-item">
+                <a onClick="searchProducts('?page=` + i + '&search=' + pagination.keyword + `',` + i + `)"
+                    class="page-link" role="button">` + i + `</a>
+                </li>`
+            );
+        }
+    }
+    $pag.append(
+        `<li class="page-item">
+            <a onClick="searchProducts('?page=` + next + '&search=' + pagination.keyword + `',` + next + `)"
+                class="page-link" role="button">Next</a>
+        </li>`
+    );
+
+    if (pagination.previous === null)
+        $("#paginationBar li:first").addClass("disabled");
+    if (pagination.next === null)
+        $("#paginationBar li:last").addClass("disabled");        
 }
