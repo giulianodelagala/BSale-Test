@@ -3,13 +3,26 @@ $(document).ready(function() {
         url: "http://localhost:8000/products/"
     }).then( data => renderProduct (data) );
 
-    $('#searchButton').click(function() {
-        $('#loginModal').modal('show');
+    // $( () => searchProducts(''));
+
+    $('#searchToggleButton').click( () => {
+        $('#searchModal').modal('show');
     });
+
+    $('#searchButton').click( () => {
+        //alert("Búsqueda: " + $('#searchKeyword').val());
+        searchProducts($('#searchKeyword').val());
+        $('#searchModal').modal('hide');
+        return false;
+    });
+
+
 });
 
 function renderProduct(data) {
     // console.log(data);
+    $("#products").empty();
+
     {
         data.results.map( (product) => {
             $("#products").append(
@@ -28,6 +41,12 @@ function renderProduct(data) {
                 </div>`
             ); 
         } );
-    }
-    
+    } 
+}
+
+function searchProducts(keyword = '') {
+    const url_query = "http://localhost:8000/list/?search=" + keyword;
+    $.ajax({
+        url: url_query
+    }).then( data => renderProduct (data) );
 }
