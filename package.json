@@ -11,9 +11,11 @@
   "author": "Alexander Pinto",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.6.1"
+    "lite-server": "^2.6.1",
+    "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "lite-server": "^2.6.1",
     "ajax": "^0.0.4",
     "bootstrap": "^4.6.0",
     "font-awesome": "^4.7.0",
