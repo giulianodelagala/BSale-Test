@@ -1,3 +1,8 @@
+#title {
+    color: #29339b;
+    text-shadow: 1px 1px 2px #f1fec6;
+}
+
 .card-img-top {
     width: 100%;
     height: 15vw;
@@ -9,14 +14,14 @@
     margin-bottom: 20px;
     padding-top: 20px;
     padding-bottom: 10px;
-    background: #60A561;
-    color: #053225;
+    background: #74a4bc;
+    color: #29339b;
     
  }
 
 .footer {
-    background-color: #60A561;
+    background-color: #74a4bc;
     margin: 20px auto;
     padding: 20px 0px; 
-    color: #053225;
+    color: #29339b;
 }
