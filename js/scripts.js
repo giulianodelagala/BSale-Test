@@ -47,7 +47,8 @@ function searchProducts(keyword = '', page = 1) {
     // console.log(url);
     $("#products").append('<h4 class="text-primary" id="loader">Loading...</h4>');
     $.ajax({
-        url: url
+        url: url,
+        crossOrigin: true
     }).then( data => {
         getValuesPagination(data, keyword, page);
         renderProduct (data);
