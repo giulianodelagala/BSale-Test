@@ -10,7 +10,7 @@ var pagination = {
     previous: null,
  }
 
- const URL_QUERY = "http://localhost:8000/list/";
+ const URL_QUERY = "https://bs-backend.herokuapp.com/list/";
 
 $(document).ready(function() {
     url = URL_QUERY + '?page=1&search=';
