@@ -9,7 +9,7 @@ var PAGINATION = {
     previous: null,
  }
 
- const URL_QUERY = "https://bs-backend.herokuapp.com/list";
+ const URL_QUERY = "https://bs-backend.herokuapp.com/list/";
 
 jQuery.ajaxSetup({
     beforeSend: function() {
