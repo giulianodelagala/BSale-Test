@@ -17,15 +17,9 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     pagination_class = ProductPagination
 
-# class ProductList(generics.ListAPIView):
-#     queryset = Product.objects.all()
-#     serializer_class = ProductSerializer
-#     filter_backends = [DjangoFilterBackend]
-#     filterset_fields = ['name']    
-
 class ProductList(generics.ListAPIView):
     pagination_class = ProductPagination
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['^name']
+    search_fields = ['$name']
