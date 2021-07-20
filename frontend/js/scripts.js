@@ -11,7 +11,7 @@ var PAGINATION = {
 
 var CATEGORIES = {}
 
-const baseURL = "http://localhost:8000/";
+const baseURL = "https://bs-backend.herokuapp.com/";
 const URL_QUERY = baseURL + "list/";
 
 jQuery.ajaxSetup({
