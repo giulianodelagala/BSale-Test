@@ -7,7 +7,7 @@ from .views import ProductList
 router = routers.DefaultRouter()
 router.register(r'products', views.ProductViewSet)
 router.register(r'groups', views.GroupViewSet)
-
+router.register(r'categories', views.CategoryViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

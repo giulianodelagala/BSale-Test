@@ -3,11 +3,14 @@ from rest_framework import viewsets, pagination, generics, filters
 
 # Create your views here.
 
-from .serializers import ProductSerializer, GroupSerializer
+from .serializers import CategorySerializer, ProductSerializer, GroupSerializer
 from .models import Product, Category
 
-class ProductPagination(pagination.PageNumberPagination):
+class GroupPagination(pagination.PageNumberPagination):
     page_size = 1
+
+class ProductPagination(pagination.PageNumberPagination):
+    page_size = 12
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
@@ -31,6 +34,10 @@ class ProductList(generics.ListAPIView):
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = GroupSerializer
-    pagination_class = ProductPagination
+    pagination_class = GroupPagination
     filter_backends = [filters.SearchFilter]
     search_fields = ['$name']
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer

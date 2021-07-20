@@ -13,8 +13,8 @@ class CategorySerializer(serializers.ModelSerializer):
         
 
 class ProductSerializer(serializers.ModelSerializer):
-    # category = CategorySerializer(many = False)
-    category = serializers.StringRelatedField(many = False) 
+    category = CategorySerializer(many = False)
+    # category = serializers.StringRelatedField(many = False) 
 
     class Meta:
         model = Product
@@ -36,3 +36,4 @@ class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+

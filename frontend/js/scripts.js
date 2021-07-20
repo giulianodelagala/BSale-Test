@@ -7,9 +7,12 @@ var PAGINATION = {
     totalPages : 0,
     next : null,
     previous: null,
- }
+}
 
- const URL_QUERY = "http://localhost:8000/list/";
+var CATEGORIES = {}
+
+const baseURL = "http://localhost:8000/";
+const URL_QUERY = baseURL + "list/";
 
 jQuery.ajaxSetup({
     beforeSend: function() {
@@ -25,6 +28,7 @@ $(document).ready(function() {
 
     //Initial Query
     $( () => searchProducts(''));
+    $( () => getCategories());
 
     //Show Search Modal
     $('#searchToggleButton').click( () => {
@@ -44,31 +48,55 @@ function searchProducts(keyword = '', page = 1) {
     // render Products card and pagination bar
 
     const url = URL_QUERY + keyword;
-    // console.log(url);
+    console.log(url);
     $("#products").append('<h4 class="text-primary" id="loader">Loading...</h4>');
     $.ajax({
         url: url
     }).then( data => {
         getValuesPagination(data, keyword, page);
-        renderProduct (data);
+        renderProduct (data, page);
         renderPagination();
     }).fail( () => {
         renderError();
     });
 }
 
-function renderProduct(data) {
-    // Render products Cards from data object
+function getCategories() {
+    // Get Categories from REST API
 
+    const url = baseURL + "categories/"
+    $.ajax({
+        url: url
+    }).then( data => {
+        data.map( (cat) => {
+            CATEGORIES[cat.id] = cat.name
+        });
+        // console.log(JSON.stringify(CATEGORIES));
+    }).fail( () => {
+        alert("Failed to Load Categories Data");
+    });
+    
+}
+
+function renderProduct(data, page) {
+    // Render products Cards from data object
+    // console.log(JSON.stringify(data.results))
     $("#products").empty();
-    {
-        data.results.map( (product) => {
+    {   var last_category = '';
+        data.results.map( (product => {
+            if (last_category !== product.category.name){
+                $("#products").append(`
+                    <div class="container row justify-content-center" id="category_title">
+                        <h4 class="text-uppercase text-success mt-2">` + product.category.name + `</h4>
+                    </div>`)
+                last_category = product.category.name;
+            }
             $("#products").append(
                 `<div class="card m-2" style="width: 16rem;">
                         <img class="card-img-top" src="` + product.url_image+ `" alt="`+ product.name + `">
                         <div class="card-body">
                             <p class="card-text text-center">` + product.name + `</p>
-                          </div>
+                        </div>
                         <hr/>
                         <div class="card-body row row-content col-10 offset-1">
                             <p >$` + product.price + `</p>
@@ -78,7 +106,7 @@ function renderProduct(data) {
                         </div>
                 </div>`
             ); 
-        } );
+        }));
     } 
 }
 
