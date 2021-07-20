@@ -21,7 +21,7 @@ class Product(models.Model):
     url_image = models.CharField(max_length=255, blank=True, null=True)
     price = models.FloatField(blank=True, null=True)
     discount = models.IntegerField(blank=True, null=True)
-    category = models.ForeignKey(Category, models.DO_NOTHING, db_column='category', blank=True, null=True)
+    category = models.ForeignKey(Category, models.DO_NOTHING, db_column='category', blank=True, null=True, related_name='categories')
 
     class Meta:
         managed = False
