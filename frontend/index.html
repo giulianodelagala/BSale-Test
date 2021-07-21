@@ -25,14 +25,29 @@
                 <div class="col-12 col-sm-6">
                     <h1><a id="title" href="/">Bsale Test</a></h1>
                 </div>
-                <span class="navbar-text ml-auto">
-                    <a id="searchToggleButton" role="button" class="btn">
-                        <span class="fa fa-search"></span> Search
-                    </a>
-                </span>
+                <!-- Dropdown Categories -->
+                <div class="col-12 col-sm-6 align-items-center">
+                    <div class="row">
+                        <div class="dropdown ml-auto">
+                            <button class="dropdown-toggle btn mt-2" type="button" id="dropdownCategories" data-toggle="dropdown" aria-expanded="false">
+                                <span class="fa fa-bars"></span> Categories
+                            </button>
+                            <ul class="dropdown-menu" id="categories_menu" aria-labelledby="dropdownCategories">
+                                <!-- Categories Insertion -->
+                            </ul>
+                        </div>
+                        <span class="navbar-text align-middle">
+                            <a id="searchToggleButton" role="button" class="btn">
+                                <span class="fa fa-search"></span> Search
+                            </a>
+                        </span>
+                    </div>           
+                </div>
             </div>
         </div>
     </header>
+
+    
 
     <!-- Search Modal -->
     <div id="searchModal" class="modal fade" role="dialog">
