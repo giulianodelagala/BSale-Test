@@ -17,7 +17,7 @@ The Backend is a REST API which is connected to a MySQL database. It is implemen
 ### Frontend
 The Frontend is mainly developed with vanilla JavaScript. This consumes the REST API, and displays on screen the list of products as a grid of Cards, in addition to controlling the pagination through a navbar also made with pure JS.
 The queries are made with JQuery Ajax, and a basic error control is made, as well as a loading message.
-It also offers the user the ability to search for products through a modal form.
+It offers the user the ability to search for products through a modal form, and filter the products by category by means of a dropdown menu.
 
 #### Technologies Used
 * HTML
