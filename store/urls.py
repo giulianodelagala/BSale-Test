@@ -25,5 +25,8 @@ urlpatterns = [
     path('list/', ProductList.as_view(), name='postsearch'),
     # + Filter by category
     # + Order by category id, name, price
+    # Example of use: 
+    # http://hosturl/list/1/?page=1&search=&ordering=category_id
+    
     path('list/<int:category_id>/', ProductList.as_view()),
 ]
