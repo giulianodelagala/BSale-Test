@@ -1,6 +1,6 @@
 # BSale-Test
 BSale Initial Evaluation
-
+![BSaleTest](/image-readme/BSaleTest.gif)
 <hr>
 
 ## Backend
