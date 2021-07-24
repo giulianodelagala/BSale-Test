@@ -7,9 +7,11 @@ var PAGINATION = {
     totalPages : 0,
     next : null,
     previous: null,
-    category: 0
+    category: 0,
 }
 
+// Search results ordering
+var ORDERING = 'category_id';
 // Product Categories
 var CATEGORIES = { 0 : 'Todo Producto'}
 
@@ -56,8 +58,10 @@ function searchProducts(category = 0, page = 1, search = '') {
     let cat_path = (category === 0) ? '' : category + '/';
     let search_path = 'search=' + search;
     let page_path = '?page=' + page;
+    let order_path = 'ordering=' + ORDERING;
 
-    const url = URL_QUERY + cat_path + page_path + '&' + search_path;
+    const url = URL_QUERY + cat_path + page_path +
+        '&' + search_path + '&' + order_path;
     console.log(url);
     $("#products").append(
         `<div class="container justify-content-center col-12" id="loader">
@@ -209,7 +213,7 @@ function renderCategoriesMenu() {
     $('#categories_menu').append(
         `<li><a id="cat_` + 0 + `"
             onClick="setActiveAndSearch(` + 0 + `)"
-            class="dropdown-item page-link" role="button">` + 'Todo producto' + `</a>
+            class="dropdown-item" role="button">` + 'Todo producto' + `</a>
         </li>`
     );
     len = Object.keys(CATEGORIES).length;
@@ -217,10 +221,34 @@ function renderCategoriesMenu() {
         $('#categories_menu').append(
             `<li><a id="cat_` + i+ `"
                 onClick="setActiveAndSearch(` + i + `)"
-                class="dropdown-item page-link" role="button">` + CATEGORIES[i] + `</a>
+                class="dropdown-item" role="button">` + CATEGORIES[i] + `</a>
             </li>`
         );    
     }
+}
+
+function setOrdering(ordering='category_id') {
+    // Set active ordering option and in dropdown menu
+
+    let ordering_title = {
+        'category_id' : 'Category',
+        'name' : 'A - Z',
+        '-name' : 'Z - A',
+        'price' : 'Lower price first',
+        '-price' : 'Higher price first',
+    }
+
+    $('#ordering_menu').children().children().removeClass("active");
+    $('#ord-' + ordering).addClass("active");
+
+    $('#selectedOrdering').text(ordering_title[ordering]);
+
+    ORDERING = ordering;
+
+    searchProducts(
+        category= PAGINATION.category,
+        page= 1 ,
+        search= PAGINATION.search );
 }
 
 function setActiveAndSearch(category=0) {

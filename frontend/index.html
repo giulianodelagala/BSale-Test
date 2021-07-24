@@ -54,14 +54,48 @@
         </div>
     </header>
 
-    <!-- Pagination -->
-    <div class="container">
-        <nav >
-            <ul class="pagination pagination-sm justify-content-center paginationBar" id="paginationBar">
-                <!-- NavBar Pagination Insertion -->
+    <div class="container row row-content border col-10 offset-1 mt-3 justify-content-center">  
+        <!-- Dropdown ordering search option -->
+        <div class="dropdown col-12 col-sm-5 mt-3">
+            <label>Order by: </label>
+            <button class="dropdown-toggle btn btn-sm border-light" type="button" id="dropdownOrderingType"
+                data-toggle="dropdown" aria-expanded="false">
+                <span class="text-truncate" 
+                    id="selectedOrdering" style="width: 8rem;">Category</span> 
+            </button>
+            <ul class="dropdown-menu" id="ordering_menu" aria-labelledby="dropdownOrderingType">
+                <li><a id="ord-category_id"
+                    onClick="setOrdering('category_id')"
+                    class="dropdown-item active" role="button">Category</a>
+                </li>
+                <li><a id="ord-name"
+                    onClick="setOrdering('name')"
+                    class="dropdown-item" role="button">A - Z</a>
+                </li>
+                <li><a id="ord--name"
+                    onClick="setOrdering('-name')"
+                    class="dropdown-item" role="button">Z - A</a>
+                </li>
+                <li><a id="ord-price"
+                    onClick="setOrdering('price')"
+                    class="dropdown-item" role="button">Lower price first</a>
+                </li>
+                <li><a id="ord--price"
+                    onClick="setOrdering('-price')"
+                    class="dropdown-item" role="button">Higher price first</a>
+                </li>
             </ul>
-          </nav>
+        </div>
+        <!-- Top Pagination -->
+        <div class="col-12 col-sm-5 mt-3">
+            <nav >
+                <ul class="pagination pagination-sm justify-content-center paginationBar" id="paginationBar">
+                    <!-- NavBar Pagination Insertion -->
+                </ul>
+            </nav>
+        </div>
     </div>
+    
 
     <!-- Products Cards -->
     <div class="container">
@@ -71,7 +105,7 @@
         </div>
     </div>
 
-    <!-- Pagination -->
+    <!-- Bottom Pagination -->
     <div class="container mt-5 mb-5">
         <nav >
             <ul class="pagination pagination-sm justify-content-center paginationBar" id="paginationBar">
