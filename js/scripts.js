@@ -15,7 +15,7 @@ var ORDERING = 'category_id';
 // Product Categories
 var CATEGORIES = { 0 : 'Todo Producto'}
 
-const baseURL = "bs-backend.herokuapp.com/";
+const baseURL = "https://bs-backend.herokuapp.com/";
 const URL_QUERY = baseURL + "list/";
 
 jQuery.ajaxSetup({
