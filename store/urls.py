@@ -5,16 +5,25 @@ from . import views
 from .views import ProductList
 
 router = routers.DefaultRouter()
-router.register(r'products', views.ProductViewSet)
-router.register(r'groups', views.GroupViewSet)
-router.register(r'categories', views.CategoryViewSet)
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
+# All products, no filter
+# 12 products per page
+router.register(r'products', views.ProductViewSet)
+
+# Products grouped by category, no filter
+# 1 category per page
+router.register(r'groups', views.GroupViewSet)
+
+# All categories of products
+router.register(r'categories', views.CategoryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    # Pagination
+    
+    # 12 products per page
+    # Regex search
     path('list/', ProductList.as_view(), name='postsearch'),
+    # + Filter by category
+    # + Order by category id
     path('list/<int:category_id>/', ProductList.as_view()),
 ]
