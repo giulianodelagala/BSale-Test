@@ -146,7 +146,7 @@ function setValuesPagination(data, category, search, page) {
 
 function renderPagination() {
     // Render pagination navbar from pagination object values
-    var $pag = $('#paginationBar');
+    var $pag = $('.paginationBar');
     let prev = PAGINATION.page - 1;
     let next = PAGINATION.page + 1;
     // console.log(JSON.stringify(PAGINATION))

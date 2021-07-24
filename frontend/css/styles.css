@@ -1,6 +1,6 @@
 #title {
-    color: #29339b;
-    text-shadow: 1px 1px 2px #f1fec6;
+    color: #00203FFF;
+    text-shadow: 1px 1px 3px #00203FFF;
 }
 
 /* Product images */
@@ -15,16 +15,16 @@
     margin-bottom: 20px;
     padding-top: 20px;
     padding-bottom: 10px;
-    background: #74a4bc;
-    color: #29339b;
+    background: #ADEFD1FF;
+    color: #00203FFF;
     
  }
 
 .footer {
-    background-color: #74a4bc;
+    background-color: #ADEFD1FF;
     margin: 20px auto;
     padding: 20px 0px; 
-    color: #29339b;
+    color: #00203FFF;
 }
 
 /********** Medium devices only **********/
