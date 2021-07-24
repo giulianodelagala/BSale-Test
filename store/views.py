@@ -23,7 +23,7 @@ class ProductList(generics.ListAPIView):
     '''
     List of products: 
     - 12 products per page
-    - Regex search
+    - Regex search in product
     - Filter by category
     - Order by category id
     '''
@@ -42,11 +42,9 @@ class ProductList(generics.ListAPIView):
 
 class GroupViewSet(viewsets.ModelViewSet):
     '''
-    List of products: 
-    - 12 products per page
-    - Regex search
-    - Filter by category
-    - Order by category id
+    List of products grouped by category: 
+    - 1 category per page
+    - Regex search in category
     '''
     queryset = Category.objects.all()
     serializer_class = GroupSerializer
