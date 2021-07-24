@@ -24,6 +24,6 @@ urlpatterns = [
     # Regex search
     path('list/', ProductList.as_view(), name='postsearch'),
     # + Filter by category
-    # + Order by category id
+    # + Order by category id, name, price
     path('list/<int:category_id>/', ProductList.as_view()),
 ]
