@@ -10,6 +10,7 @@ var PAGINATION = {
     category: 0
 }
 
+// Product Categories
 var CATEGORIES = { 0 : 'Todo Producto'}
 
 const baseURL = "http://localhost:8000/";
@@ -30,8 +31,6 @@ $(document).ready(function() {
     //Initial Query
     $( () => searchProducts(category=0, page = 1, search=''));
     $( () => getCategories());
-
-    // $( () =>renderCategoriesMenu());
 
     //Show Search Modal
     $('#searchToggleButton').click( () => {
@@ -95,7 +94,7 @@ function getCategories() {
 
 function renderProduct(data) {
     // Render products Cards from data object
-    // console.log(JSON.stringify(data.results))
+
     $("#products").empty();
     {   var last_category = '';
         data.results.map( (product => {
@@ -111,7 +110,7 @@ function renderProduct(data) {
                 product.url_image == ''){
                 product.url_image = 'images/image-not-available.png';
             }
-            // Insert Card products
+            // Insert Card product
             $("#products").append(
                 `<div class="card m-2" style="width: 16rem;">
                         <img class="card-img-top" src="` + product.url_image+ `" alt="`+ product.name + `">
@@ -231,7 +230,6 @@ function setActiveAndSearch(category=0) {
     $('#categories_menu').children().children().removeClass("active");
     $('#cat_' + category).addClass("active");
 
-    //$('#dropdownCategories').text('');
     $('#selectedCategory').text(' ' + CATEGORIES[category.toString()]);
 
     searchProducts(
