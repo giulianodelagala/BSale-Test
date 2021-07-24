@@ -10,7 +10,7 @@ var PAGINATION = {
     category: 0
 }
 
-var CATEGORIES = {}
+var CATEGORIES = { 0 : 'Todo Producto'}
 
 const baseURL = "http://localhost:8000/";
 const URL_QUERY = baseURL + "list/";
@@ -106,6 +106,12 @@ function renderProduct(data) {
                     </div>`)
                 last_category = product.category.name;
             }
+            // Controling not available images
+            if (product.url_image == null ||
+                product.url_image == ''){
+                product.url_image = 'images/image-not-available.png';
+            }
+            // Insert Card products
             $("#products").append(
                 `<div class="card m-2" style="width: 16rem;">
                         <img class="card-img-top" src="` + product.url_image+ `" alt="`+ product.name + `">
@@ -224,6 +230,10 @@ function setActiveAndSearch(category=0) {
 
     $('#categories_menu').children().children().removeClass("active");
     $('#cat_' + category).addClass("active");
+
+    //$('#dropdownCategories').text('');
+    $('#selectedCategory').text(' ' + CATEGORIES[category.toString()]);
+
     searchProducts(
         category= category,
         page= 1 ,
