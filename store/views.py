@@ -25,13 +25,14 @@ class ProductList(generics.ListAPIView):
     - 12 products per page
     - Regex search in product
     - Filter by category
-    - Order by category id
+    - Order by name, price
     '''
     model = Product
     pagination_class = ProductPagination
     serializer_class = ProductSerializer
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['$name']
+    ordering_fields = ['name', 'price']
 
     def get_queryset(self):
         try:
